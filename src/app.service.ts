@@ -13,6 +13,8 @@ export class AppService {
   ) {}
 
   async getItems() {
+    const cacheKey1 = 'items1';
+    console.log('GETITEMS');
     return await this.itemBD.find();
   }
 
