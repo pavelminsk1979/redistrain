@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Item } from './item.entity';
 import { CacheModule } from '@nestjs/cache-manager';
+import * as redisStore from 'cache-manager-redis-store';
 
 @Module({
   imports: [
@@ -19,9 +20,9 @@ import { CacheModule } from '@nestjs/cache-manager';
     }),
     TypeOrmModule.forFeature([Item]),
     CacheModule.register({
-      store: 'redis',
-      host: 'localhost', // Хост вашего Redis-сервера
-      port: 6379, // Порт вашего Redis-сервера
+      store: redisStore,
+      host: 'localhost', // или 127.0.0.1
+      port: 6379,
     }),
   ],
   controllers: [AppController],
